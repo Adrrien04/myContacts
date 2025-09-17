@@ -16,7 +16,7 @@ const contactSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: false,
+    required: true,
     match: /^[0-9+\-().\s]{10,20}$/,
   },
   email: {
@@ -29,6 +29,6 @@ const contactSchema = new mongoose.Schema({
   },
 });
 
-const contactModel = mongoose.model("User", contactSchema);
+const contactModel = mongoose.model("Contact", contactSchema);
 
 export default contactModel;
