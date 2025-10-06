@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
+const { parsePhoneNumberFromString } = require("libphonenumber-js");
 
 const contactSchema = new mongoose.Schema({
   user: {
@@ -6,29 +7,21 @@ const contactSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
   phone: {
     type: String,
     required: true,
-    match: /^[0-9+\-().\s]{10,20}$/,
+    validate: {
+      validator: function (v) {
+        const phoneNumber = parsePhoneNumberFromString(v);
+        return phoneNumber ? phoneNumber.isValid() : false;
+      },
+      message: (props) => `${props.value} is not a valid phone number`,
+    },
   },
-  email: {
-    type: String,
-    required: false,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  email: { type: String, required: false },
+  createdAt: { type: Date, default: Date.now },
 });
 
-const contactModel = mongoose.model("Contact", contactSchema);
-
-export default contactModel;
+module.exports = mongoose.model("Contact", contactSchema);
