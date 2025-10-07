@@ -55,3 +55,32 @@ export const deleteContact = async (req, res) => {
       .json({ success: false, message: "Erreur serveur", err: err.message });
   }
 };
+
+export const updateContact = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { firstName, lastName, phone, email, address } = req.body;
+
+    const updated = await Contact.findOneAndUpdate(
+      { _id: id, user: req.user.id },
+      { firstName, lastName, phone, email, address },
+      { new: true, runValidators: true },
+    );
+
+    if (!updated) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Contact non trouvé" });
+    }
+
+    res.json({
+      success: true,
+      message: "Contact mis à jour",
+      contact: updated,
+    });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ success: false, message: "Erreur serveur", err: err.message });
+  }
+};

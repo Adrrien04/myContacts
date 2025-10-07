@@ -15,12 +15,13 @@ const contactSchema = new mongoose.Schema({
     validate: {
       validator: function (v) {
         const phoneNumber = parsePhoneNumberFromString(v);
-        return phoneNumber ? phoneNumber.isValid() : false;
+        return phoneNumber ? phoneNumber.isPossible() : false;
       },
       message: (props) => `${props.value} is not a valid phone number`,
     },
   },
-  email: { type: String, required: false },
+  email: { type: String },
+  address: { type: String },
   createdAt: { type: Date, default: Date.now },
 });
 
