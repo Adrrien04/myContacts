@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Form, Button, Card, Alert, Container } from 'react-bootstrap';
 import * as api from '../api';
 
 const Login = () => {
@@ -24,26 +25,40 @@ const Login = () => {
     };
 
     return (
-        <div className="container vh-100 d-flex justify-content-center align-items-center">
-            <div className="card shadow-lg" style={{ width: '25rem' }}>
-                <div className="card-body p-5">
-                    <h2 className="card-title text-center mb-4">Connexion</h2>
-                    {error && <div className="alert alert-danger">{error}</div>}
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            <input type="email" name="email" className="form-control" placeholder="Email" required onChange={handleChange} />
-                        </div>
-                        <div className="mb-4">
-                            <input type="password" name="password" className="form-control" placeholder="Mot de passe" required onChange={handleChange} />
-                        </div>
-                        <button type="submit" className="btn btn-primary w-100">Se connecter</button>
-                    </form>
+        <Container className="vh-100 d-flex justify-content-center align-items-center">
+            <Card className="shadow-lg" style={{ width: '25rem' }}>
+                <Card.Body className="p-5">
+                    <Card.Title className="text-center mb-4">Connexion</Card.Title>
+                    {error && <Alert variant="danger">{error}</Alert>}
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3" controlId="formEmail">
+                            <Form.Control
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                required
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-4" controlId="formPassword">
+                            <Form.Control
+                                type="password"
+                                name="password"
+                                placeholder="Mot de passe"
+                                required
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        <Button type="submit" variant="primary" className="w-100">
+                            Se connecter
+                        </Button>
+                    </Form>
                     <p className="mt-4 text-center">
                         Pas encore de compte ? <Link to="/register">Inscrivez-vous</Link>
                     </p>
-                </div>
-            </div>
-        </div>
+                </Card.Body>
+            </Card>
+        </Container>
     );
 };
 
