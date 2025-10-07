@@ -2,7 +2,7 @@ import axios from 'axios';
 import type {NewContact} from "../type.ts";
 
 const API = axios.create({
-    baseURL: process.env.API_URL,
+    baseURL: import.meta.env.VITE_API_URL,
 });
 
 API.interceptors.request.use((req) => {
