@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { parsePhoneNumberFromString } = require("libphonenumber-js");
+import mongoose from "mongoose";
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 
 const contactSchema = new mongoose.Schema({
   user: {
@@ -25,4 +25,5 @@ const contactSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("Contact", contactSchema);
+const Contact = mongoose.model("Contact", contactSchema);
+export default Contact;
