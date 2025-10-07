@@ -77,7 +77,6 @@ const ContactForm = ({ onAddContact }: ContactFormProps) => {
                             value={formData.firstName}
                             onChange={handleChange}
                             isInvalid={!!errors.firstName}
-                            required
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.firstName}
@@ -92,7 +91,6 @@ const ContactForm = ({ onAddContact }: ContactFormProps) => {
                             value={formData.lastName}
                             onChange={handleChange}
                             isInvalid={!!errors.lastName}
-                            required
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.lastName}
@@ -123,15 +121,6 @@ const ContactForm = ({ onAddContact }: ContactFormProps) => {
                         )}
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formAddress">
-                        <Form.Control
-                            type="text"
-                            name="address"
-                            placeholder="Adresse"
-                            value={formData.address}
-                            onChange={handleChange}
-                        />
-                    </Form.Group>
 
                     {errors.general && (
                         <div className="alert alert-danger py-2" role="alert">
