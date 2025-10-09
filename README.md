@@ -3,7 +3,7 @@
 **myContacts** est une application web de gestion de contacts simple et efficace, développée en **React (Vite + TypeScript)** pour le front-end et **Node.js / Express / MongoDB** pour le back-end.  
 Elle permet aux utilisateurs de créer un compte, de se connecter, puis de gérer leur carnet d’adresses en ligne.
 
----
+
 
 ## 🚀 Fonctionnalités principales
 
@@ -28,6 +28,12 @@ L'accès au backend se fera ici:
 
 L'accès au swagger se fera ici:
 **https://mycontacts-uexx.onrender.com/api-docs/#/default**
+
+---
+## 🛑 Attention (Accès au swagger)
+
+Si vous testez le swagger, à l'emplacement ou vous devez entrer le token vous devez mettre "Bearer " pour que l'authentification fonctionne correctement.
+<a href="https://ibb.co/d4sybt08"><img src="https://i.ibb.co/pj6pWQvY/Sans-titre.png" alt="Sans-titre" border="0"></a>
 
 ---
 
