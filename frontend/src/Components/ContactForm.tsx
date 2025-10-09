@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/bootstrap.css';
@@ -20,7 +20,7 @@ const ContactForm = ({ onAddContact, onEditContact, initialData }: ContactFormPr
     });
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  useEffect(() => {
+    useEffect(() => {
         if (initialData) {
             setFormData({
                 firstName: initialData.firstName || '',
@@ -80,7 +80,8 @@ const ContactForm = ({ onAddContact, onEditContact, initialData }: ContactFormPr
                         <Form.Control
                             type="text"
                             name="firstName"
-                            placeholder="Prénom"
+                            placeholder="Prénom" // Placeholder ajouté
+                            aria-label="Prénom"
                             value={formData.firstName}
                             onChange={handleChange}
                             isInvalid={!!errors.firstName}
@@ -92,7 +93,8 @@ const ContactForm = ({ onAddContact, onEditContact, initialData }: ContactFormPr
                         <Form.Control
                             type="text"
                             name="lastName"
-                            placeholder="Nom"
+                            placeholder="Nom" // Placeholder ajouté
+                            aria-label="Nom"
                             value={formData.lastName}
                             onChange={handleChange}
                             isInvalid={!!errors.lastName}
@@ -105,6 +107,7 @@ const ContactForm = ({ onAddContact, onEditContact, initialData }: ContactFormPr
                             type="email"
                             name="email"
                             placeholder="Email"
+                            aria-label="Email" // Aria-label ajouté
                             value={formData.email}
                             onChange={handleChange}
                         />
@@ -113,6 +116,7 @@ const ContactForm = ({ onAddContact, onEditContact, initialData }: ContactFormPr
                     <Form.Group className="mb-3">
                         <PhoneInput
                             country="fr"
+                            aria-label="Numéro de téléphone"
                             value={formData.phone}
                             onChange={handlePhoneChange}
                             inputStyle={{ width: '100%' }}
@@ -120,6 +124,17 @@ const ContactForm = ({ onAddContact, onEditContact, initialData }: ContactFormPr
                         {errors.phone && <div className="invalid-feedback d-block">{errors.phone}</div>}
                     </Form.Group>
 
+                    <Form.Group className="mb-3">
+                        <Form.Control
+                            as="textarea"
+                            rows={3}
+                            name="address"
+                            placeholder="Adresse"
+                            aria-label="Adresse"
+                            value={formData.address}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
                     {errors.general && (
                         <div className="alert alert-danger py-2">{errors.general}</div>

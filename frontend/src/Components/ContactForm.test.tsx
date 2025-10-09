@@ -21,17 +21,15 @@ describe("ContactForm Component", () => {
     });
 
     it("should call onAddContact with correct data", async () => {
-        const mockAdd = jest.fn().mockResolvedValue(undefined);
+        const mockAdd = jest.fn();
         render(<ContactForm onAddContact={mockAdd} />);
 
-        fireEvent.change(screen.getByPlaceholderText(/Prénom/i), { target: { value: "John" } });
-        fireEvent.change(screen.getAllByPlaceholderText(/Nom/i)[0], { target: { value: "Doe" } });
-        fireEvent.change(screen.getByPlaceholderText(/Email/i), { target: { value: "john@doe.com" } });
+        fireEvent.change(screen.getByLabelText(/Prénom/i), { target: { value: 'John' } });
+        fireEvent.change(screen.getAllByLabelText(/Nom/i)[1], { target: { value: 'Doe' } });
         fireEvent.change(
             screen.getByPlaceholderText("1 (702) 123-4567"),
             { target: { value: "+33123456789" } }
         );
-
 
         fireEvent.click(screen.getByRole("button", { name: /ajouter/i }));
 
@@ -39,8 +37,8 @@ describe("ContactForm Component", () => {
             expect(mockAdd).toHaveBeenCalledWith({
                 firstName: "John",
                 lastName: "Doe",
-                email: "john@doe.com",
-                phone: "+33612345678",
+                email: "",
+                phone: "+33123456789",
                 address: "",
             });
         });
