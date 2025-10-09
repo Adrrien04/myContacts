@@ -1,69 +1,136 @@
-# React + TypeScript + Vite
+# 📇 myContacts
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**myContacts** est une application web de gestion de contacts simple et efficace, développée en **React (Vite + TypeScript)** pour le front-end et **Node.js / Express / MongoDB** pour le back-end.  
+Elle permet aux utilisateurs de créer un compte, de se connecter, puis de gérer leur carnet d’adresses en ligne.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Fonctionnalités principales
 
-## Expanding the ESLint configuration
+-  Authentification (inscription / connexion)
+-  Création, édition et suppression de contacts
+-  Liste complète des contacts avec recherche
+-  API documentée avec **Swagger**
+- ️Données stockées dans **MongoDB**
+-  Front-end moderne avec **React + TypeScript + Vite**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
+## 💡 Accès en ligne du site
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Accès au front
+L'accès au dahsboard, à la connexion ainsi qu'a l'inscription se feront ici :
+**https://my-contacts-kohl.vercel.app**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Accès au back
+L'accès au backend se fera ici:
+**https://mycontacts-uexx.onrender.com/**
+
+L'accès au swagger se fera ici:
+**https://mycontacts-uexx.onrender.com/api-docs/#/default**
+
+---
+
+## 🏗️ Structure du projet
+
+```
+myContacts/
+│
+├── backend/                 # Serveur Express + API REST
+│   ├── controller/          # Logique métier (auth, contacts, etc.)
+│   ├── model/               # Modèles Mongoose (User, Contact)
+│   ├── route/               # Routes Express
+│   ├── middleware.js        # Middleware (auth, erreurs)
+│   ├── swagger.js           # Configuration Swagger
+│   ├── server.js            # Point d’entrée du serveur
+│   └── package.json
+│
+└── frontend/                # Application React + Vite
+    ├── src/
+    │   ├── Components/      # Composants réutilisables
+    │   ├── Pages/           # Pages (Login, Register, Dashboard)
+    │   ├── api/             # Fonctions d’appel API
+    │   ├── App.tsx          # Routeur principal
+    │   └── main.tsx         # Point d’entrée Vite
+    ├── public/
+    ├── index.html
+    └── package.json
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚙️ Installation et exécution
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1️⃣ Cloner le dépôt
+
+```bash
+git clone https://github.com/ton-utilisateur/myContacts.git
+cd myContacts
 ```
+
+### 2️⃣ Lancer le **backend**
+
+```bash
+cd backend
+npm install
+```
+
+Créer un fichier `.env` à la racine du dossier `backend` :
+
+```env
+MONGO_URI=mongodb+srv://<utilisateur>:<motdepasse>@<cluster>.mongodb.net/
+JWT_SECRET=ton_secret_jwt
+PORT=5000
+```
+
+Puis exécuter le serveur :
+
+```bash
+npm start
+```
+
+Le backend sera disponible sur :  
+👉 **http://localhost:5000**
+
+### 3️⃣ Lancer le **frontend**
+
+Dans un autre terminal :
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+L’application sera disponible sur :  
+👉 **http://localhost:5173**
+
+---
+
+## 📘 Documentation API
+
+Le projet inclut **Swagger** pour visualiser et tester les routes de l’API.
+
+Une fois le backend démarré, accédez à :  
+👉 **http://localhost:5000/api-docs**
+
+---
+
+## 🔑 Endpoints principaux
+
+| Méthode | Route | Description |
+|----------|--------|-------------|
+| `POST` | `/auth/register` | Créer un nouveau compte |
+| `POST` | `/auth/login` | Se connecter |
+| `GET` | `/contacts` | Lister tous les contacts |
+| `POST` | `/contacts` | Ajouter un contact |
+| `PUT` | `/contacts/:id` | Modifier un contact |
+| `DELETE` | `/contacts/:id` | Supprimer un contact |
+
+
+
+##  Auteur
+
+Développé par **Adrrien**
+
+Dans le cadre d'un projet à l'Efrei
