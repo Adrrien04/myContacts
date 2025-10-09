@@ -12,7 +12,7 @@ Elle permet aux utilisateurs de créer un compte, de se connecter, puis de gére
 -  Liste complète des contacts avec recherche
 -  API documentée avec **Swagger**
 - ️Données stockées dans **MongoDB**
--  Front-end moderne avec **React + TypeScript + Vite**
+-  Front-end avec **React + TypeScript + Vite**
 
 
 ---
