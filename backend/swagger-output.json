@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "description": "API pour la gestion de contacts avec authentification"
   },
-  "host": "localhost:5000",
+  "host": "https://mycontacts-uexx.onrender.com",
   "basePath": "/",
   "schemes": [
     "http"
