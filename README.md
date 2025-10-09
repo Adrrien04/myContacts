@@ -92,7 +92,7 @@ PORT=5000
 Puis exécuter le serveur :
 
 ```bash
-npm start
+node server.js
 ```
 
 Le backend sera disponible sur :  
