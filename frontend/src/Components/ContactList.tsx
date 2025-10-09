@@ -16,7 +16,7 @@ const ContactList = ({ contacts, onDeleteContact, onEditContact }: ContactListPr
             ) : (
                 <Row xs={1} md={2} lg={3} className="g-4">
                     {contacts.map((contact) => (
-                        <Col key={contact._id}>
+                        <Col key={contact._id} data-testid={contact._id}>
                             <Card className="h-100 shadow-sm">
                                 <Card.Body>
                                     <Card.Title>
